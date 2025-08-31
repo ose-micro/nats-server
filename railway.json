@@ -12,7 +12,7 @@
     }
   ],
   "env": {
-    "NATS_USER": "nats",
-    "NATS_PASS": "supersecret"
+    "NATS_USER": "",
+    "NATS_PASS": ""
   }
 }
