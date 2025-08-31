@@ -1,7 +1,7 @@
 FROM nats:2.10-alpine
 
-ENV NATS_USER=nats
-ENV NATS_PASS=supersecret
+ARG NATS_USER=nats
+ARG NATS_PASS=supersecret
 
 # Copy config file into container
 COPY nats.conf /etc/nats/nats.conf
