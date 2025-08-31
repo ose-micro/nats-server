@@ -1,0 +1,18 @@
+{
+  "build": {
+    "builder": "dockerfile"
+  },
+  "deploy": {
+    "restartPolicyType": "ON_FAILURE"
+  },
+  "volumes": [
+    {
+      "mountPath": "/data",
+      "name": "nats-data"
+    }
+  ],
+  "env": {
+    "NATS_USER": "nats",
+    "NATS_PASS": "supersecret"
+  }
+}
