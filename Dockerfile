@@ -1,6 +1,5 @@
 FROM nats:2.10-alpine
 
-# Set environment variables (Railway will override at runtime)
 ENV NATS_USER=nats
 ENV NATS_PASS=supersecret
 
