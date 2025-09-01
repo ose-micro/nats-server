@@ -1,13 +1,14 @@
-FROM nats:2.10-alpine
+FROM nats:latest
 
-ENV NATS_USER=nats
-ENV NATS_PASS=supersecret
-
-# Install envsubst
-RUN apk add --no-cache gettext
-
-COPY nats.conf.tmpl /etc/nats/nats.conf.tmpl
-
+# Expose NATS and monitoring ports
 EXPOSE 4222 8222
 
-CMD sh -c "envsubst < /etc/nats/nats.conf.tmpl > /etc/nats/nats.conf && nats-server -c /etc/nats/nats.conf"
+# Create JetStream data directory
+RUN mkdir -p /data/jetstream
+
+VOLUME /data/jetstream
+
+# Copy configuration
+COPY nats.conf /etc/nats/nats.conf
+
+CMD ["-c", "/etc/nats/nats.conf"]
