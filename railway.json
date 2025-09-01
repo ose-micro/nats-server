@@ -1,15 +1,11 @@
 {
-  "build": {
-    "builder": "DOCKERFILE"
-  },
-  "deploy": {
-    "startCommand": "nats-server -js -m 8222 --store_dir /data --user $NATS_USER --pass $NATS_PASS",
-    "restartPolicyType": "ON_FAILURE"
-  },
+  "build": { "builder": "dockerfile" },
+  "deploy": { "restartPolicyType": "ON_FAILURE" },
   "volumes": [
-    {
-      "name": "nats-data",
-      "mountPath": "/data"
-    }
-  ]
+    { "mountPath": "/data", "name": "nats-data" }
+  ],
+  "env": {
+    "NATS_USER": "fundme",
+    "NATS_PASS": "supersecretpassword"
+  }
 }

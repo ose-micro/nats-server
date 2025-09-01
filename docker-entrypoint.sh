@@ -1,7 +1,12 @@
 #!/bin/sh
 set -e
 
-# Substitute environment variables into config
+# Expand env vars
 envsubst < /etc/nats/nats.conf.tmpl > /etc/nats/nats.conf
 
-exec "$@"
+# Ensure JetStream data directory exists
+mkdir -p /data/jetstream
+chown -R nats:nats /data/jetstream
+
+# Run NATS as the nats user
+exec nats-server -c /etc/nats/nats.conf
