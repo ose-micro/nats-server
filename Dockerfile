@@ -1,14 +1,11 @@
-FROM nats:latest
+FROM nats:2.10
 
-# Install envsubst
 USER root
-RUN apt-get update && apt-get install -y gettext-base && rm -rf /var/lib/apt/lists/*
 
-# Copy config template
+RUN apk add --no-cache gettext
+
 COPY nats.conf.tmpl /etc/nats/nats.conf.tmpl
+COPY docker-entrypoint.sh /usr/local/bin/
 
-# Expose ports
-EXPOSE 4222 8222
-
-# At runtime, substitute env vars → generate real config → run nats-server
-CMD ["/bin/sh", "-c", "envsubst < /etc/nats/nats.conf.tmpl > /etc/nats/nats.conf && exec nats-server -c /etc/nats/nats.conf"]
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["nats-server", "-c", "/etc/nats/nats.conf"]
