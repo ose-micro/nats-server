@@ -1,0 +1,15 @@
+{
+  "build": {
+    "builder": "DOCKERFILE"
+  },
+  "deploy": {
+    "startCommand": "nats-server -js -m 8222 --store_dir /data --user $NATS_USER --pass $NATS_PASS",
+    "restartPolicyType": "ON_FAILURE"
+  },
+  "volumes": [
+    {
+      "name": "nats-data",
+      "mountPath": "/data"
+    }
+  ]
+}
