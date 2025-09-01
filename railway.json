@@ -10,9 +10,5 @@
       "mountPath": "/data",
       "name": "nats-data"
     }
-  ],
-  "env": {
-    "NATS_USER": "${NATS_USER}",
-    "NATS_PASS": "${NATS_PASS}"
-  }
+  ]
 }
