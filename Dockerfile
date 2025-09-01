@@ -1,7 +1,7 @@
 FROM nats:2.10-alpine
 
 ENV NATS_USER=nats
-ENV NATS_USER=supersecret
+ENV NATS_PASS=supersecret
 
 # Install envsubst
 RUN apk add --no-cache gettext
