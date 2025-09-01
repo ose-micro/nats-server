@@ -9,8 +9,5 @@ ENV NATS_STORE_DIR=/data
 # Expose ports (4222 client, 8222 monitoring, 6222 clustering)
 EXPOSE 4222 8222 6222
 
-# Create data directory for JetStream
-RUN mkdir -p ${NATS_STORE_DIR}
-
 # Start NATS with JetStream, monitoring, and authentication
 CMD nats-server -js -m 8222 --store_dir ${NATS_STORE_DIR} --user ${NATS_USER} --pass ${NATS_PASS}
