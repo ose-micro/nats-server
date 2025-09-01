@@ -1,10 +1,11 @@
 FROM nats:latest
 
+ARG NATS_USER=nats
+ARG NATS_PASS=supersecret
+
 # Expose NATS and monitoring ports
 EXPOSE 4222 8222
 
-ENV NATS_USER=nats
-ENV NATS_PASS=supersecret
 
 # Copy configuration
 COPY nats.conf /etc/nats/nats.conf
