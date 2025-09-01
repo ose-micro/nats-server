@@ -10,9 +10,5 @@
       "mountPath": "/data",
       "name": "nats-data"
     }
-  ],
-  "env": {
-    "NATS_USER": "fundme",
-    "NATS_PASS": "mI7r9jQpLk3uXy6fHnWb2sEwRtAq8fGhJaL0yUzXk1E="
-  }
+  ]
 }

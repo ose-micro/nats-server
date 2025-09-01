@@ -1,7 +1,8 @@
 FROM nats:2.10-alpine
 
-ARG NATS_USER=nats
-ARG NATS_PASS=supersecret
+# Runtime environment variables (can be overridden in Railway/Compose)
+ENV NATS_USER=nats
+ENV NATS_PASS=supersecret
 
 # Copy config file into container
 COPY nats.conf /etc/nats/nats.conf
@@ -10,4 +11,4 @@ COPY nats.conf /etc/nats/nats.conf
 EXPOSE 4222 8222
 
 # Run nats-server with config
-CMD ["-c", "/etc/nats/nats.conf"]
+CMD ["nats-server", "-c", "/etc/nats/nats.conf"]
