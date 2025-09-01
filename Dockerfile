@@ -1,10 +1,16 @@
+# Use official NATS image
 FROM nats:latest
 
-# Expose NATS and monitoring ports
-EXPOSE 4222 8222
+# Environment variables (set in Railway dashboard)
+ENV NATS_USER=myuser
+ENV NATS_PASS=mypassword
+ENV NATS_STORE_DIR=/data
 
-# Copy JetStream config
-COPY nats.conf /etc/nats/nats.conf
+# Expose ports (4222 client, 8222 monitoring, 6222 clustering)
+EXPOSE 4222 8222 6222
 
-# Use exec form so NATS reads env vars directly
-CMD ["nats-server", "-c", "/etc/nats/nats.conf", "--user", "${NATS_USER}", "--pass", "${NATS_PASS}"]
+# Create data directory for JetStream
+RUN mkdir -p ${NATS_STORE_DIR}
+
+# Start NATS with JetStream, monitoring, and authentication
+CMD nats-server -js -m 8222 --store_dir ${NATS_STORE_DIR} --user ${NATS_USER} --pass ${NATS_PASS}
