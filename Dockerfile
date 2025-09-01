@@ -5,7 +5,7 @@ ENV NATS_USER=nats
 ENV NATS_PASS=supersecret
 
 # Copy config file into container
-COPY nats.conf.tmpl /etc/nats/nats.conf
+COPY nats.conf /etc/nats/nats.conf
 
 # Expose ports
 EXPOSE 4222 8222
