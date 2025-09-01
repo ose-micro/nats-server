@@ -1,12 +1,13 @@
 FROM nats:2.10-alpine
 
-RUN apk add --no-cache gettext
+ARG NATS_USER=nats
+ARG NATS_PASS=supersecret
 
-COPY nats.conf.tmpl /etc/nats/nats.conf.tmpl
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+# Copy config file
+COPY nats.conf /etc/nats/nats.conf
 
+# Expose ports
 EXPOSE 4222 8222
 
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+# Run nats-server with config
 CMD ["nats-server", "-c", "/etc/nats/nats.conf"]
