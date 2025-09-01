@@ -1,4 +1,4 @@
-FROM nats:latest
+FROM nats:2.10-alpine
 
 # Install envsubst
 RUN apk add --no-cache gettext
